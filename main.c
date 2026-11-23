@@ -1,25 +1,31 @@
+
 #include <stdio.h>
 
-int g_x = 0;
-int g_y = 0;
-int g_quotient = 0;
-int g_remainder = 0;
-
-void calc_divmod(void)
+/* 商と余りをポインタを使って返す関数 */
+void divmod(int x, int y, int *q, int *r)
 {
-    g_quotient = g_x / g_y;
-    g_remainder = g_x % g_y;
+    *q = x / y;
+    *r = x % y;
 }
 
 int main(void)
 {
-    scanf("%d %d", &g_x, &g_y);
-    if (g_x <= 0 || g_y <= 0)
+    int x, y;
+    int q, r;
+
+    scanf("%d %d", &x, &y);
+
+    /* 0以下の数値が入力された場合はNG */
+    if (x <= 0 || y <= 0)
     {
         printf("NG");
         return 0;
     }
-    calc_divmod();
-    printf("%d,%d", g_quotient, g_remainder);
+
+    /* 商と余りを計算する */
+    divmod(x, y, &q, &r);
+
+    printf("%d,%d", q, r);
+
     return 0;
 }
